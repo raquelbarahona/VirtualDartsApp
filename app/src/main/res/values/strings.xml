@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Virtual Darts</string>
+    <string name="login_title">Virtual Darts</string>
+    <string name="welcome_title">Virtual Darts</string>
+    <string name="main_password">Password</string>
+    <string name="username">Username</string>
+    <string name="retype_password">Retype your password</string>
+    <string name="btn_register">Register</string>
+    <string name="btn_signup">Create an account</string>
+    <string name="welcome_back_username">Welcome back</string>
+    <string name="stringFirstName">First name</string>
+    <string name="stringLastName">Last name</string>
+    <string name="stringAge">Age</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="hello_game_stats">Here are your game statistics up to date</string>
+    <string name="bluetooth_statement_string">Enable Bluetooth connection to update your game statistics</string>
+    <string name="linkydinky"><a href="https://shotdarts.com/blogs/discover/a-starter-for-5-basic-dart-games-you-should-know">Taken from ShotDarts.com</a></string>
+</resources>
