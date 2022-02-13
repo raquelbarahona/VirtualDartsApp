@@ -5,14 +5,17 @@ public class ProfileEntry {
     String first_name;
     String last_name;
     int age;
+    String pic_path;
 
     public ProfileEntry() {}
 
-    public ProfileEntry(String user_ID,  String first_name, String last_name, int age) {
+    public ProfileEntry(String user_ID,  String first_name, String last_name, int age,
+                        String pic_path) {
         this.user_ID = user_ID;
         this.first_name = first_name;
         this.last_name = last_name;
         this.age =  age;
+        this.pic_path = pic_path;
 
     }
 
@@ -32,6 +35,8 @@ public class ProfileEntry {
         return this.age;
     }
 
+    public String getPic_path() { return pic_path; }
+
     public void setUser_ID(String user_ID) {
         this.user_ID = user_ID;
     }
@@ -47,4 +52,6 @@ public class ProfileEntry {
     public void setAge(int age) {
         this.age = age;
     }
+
+    public void setPic_path(String pic_path) { this.pic_path = pic_path; }
 }

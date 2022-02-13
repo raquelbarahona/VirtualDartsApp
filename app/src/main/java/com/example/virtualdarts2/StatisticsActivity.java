@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,7 +16,8 @@ public class StatisticsActivity extends AppCompatActivity {
 
     TextView helloUserTV, favMode, highScore, lowScore, avgScore, totalGames, totalMatches,
             mWon, mLost, mTied;
-    Button btnHome, btnGameDetails;
+    Button btnGameDetails;
+    ImageButton btnHome;
     String user_ID;
     DBStats dbStats;
     DBGame dbGame;
@@ -37,13 +39,14 @@ public class StatisticsActivity extends AppCompatActivity {
         mLost = (TextView) findViewById(R.id.matchesLostTV);
         mTied = (TextView) findViewById(R.id.matchesTiedTV);
 
-        btnHome = (Button) findViewById(R.id.btnHomeStats);
+        btnHome = (ImageButton) findViewById(R.id.btnHomeStats);
         btnGameDetails = (Button) findViewById(R.id.btnGameDetails);
 
         dbStats = new DBStats(this);
         dbGame = new DBGame(this);
 
         // user_ID from other activity
+        // there are issues with this, debug
         user_ID = getIntent().getStringExtra("current_user");
         if(user_ID == null)
             user_ID = "user_ID";

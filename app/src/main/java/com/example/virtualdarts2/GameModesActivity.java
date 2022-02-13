@@ -9,10 +9,11 @@ import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class GameModesActivity extends AppCompatActivity {
-    Button btnHome;
+    ImageButton btnHome;
     TextView players301, playersRW, playersCr, playersKill, playersEnC,
             nums301, numsCr, numsKill, numsEnC,
             text301, textRW, textCr, textKill, textEnC,
@@ -25,7 +26,7 @@ public class GameModesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_modes);
 
-        btnHome = (Button) findViewById(R.id.btnHomeModes);
+        btnHome = (ImageButton) findViewById(R.id.btnHomeModes);
 
         players301 = (TextView) findViewById(R.id.tvMode301Players);
         playersRW = (TextView) findViewById(R.id.tvModeRWPlayers);

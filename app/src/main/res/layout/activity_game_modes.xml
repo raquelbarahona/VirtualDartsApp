@@ -15,12 +15,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:backgroundTint="@color/lilac"
+    <ImageButton
+        android:layout_width="70dp"
+        android:layout_height="64dp"
+        android:background="@drawable/home"
+        android:backgroundTint="#a74b4b"
         android:textColor="@android:color/black"
         android:id="@+id/btnHomeModes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,12 +79,13 @@
             android:orientation="vertical">
 
             <TextView
-                android:fontFamily="@font/rubik_light"
+                android:fontFamily="@font/press_start_2p"
+                android:textSize="25sp"
+                android:textColor="#20ba23"
                 android:id="@+id/tvMode301"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="301"
-                android:textSize="25sp"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:paddingLeft="10dp"
@@ -129,11 +131,12 @@
 
             <TextView
                 android:id="@+id/tvModeRW"
-                android:fontFamily="@font/rubik_light"
+                android:fontFamily="@font/press_start_2p"
+                android:textSize="20sp"
+                android:textColor="#20ba23"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Round the world"
-                android:textSize="25sp"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:paddingLeft="10dp"
@@ -166,12 +169,13 @@
                 android:paddingBottom="3dp"/>
 
             <TextView
-                android:fontFamily="@font/rubik_light"
+                android:fontFamily="@font/press_start_2p"
+                android:textSize="22sp"
+                android:textColor="#20ba23"
                 android:id="@+id/tvModeCricket"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Cricket"
-                android:textSize="25sp"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:paddingLeft="10dp"
@@ -216,12 +220,13 @@
                 android:paddingBottom="3dp"/>
 
             <TextView
-                android:fontFamily="@font/rubik_light"
+                android:fontFamily="@font/press_start_2p"
+                android:textSize="22sp"
+                android:textColor="#20ba23"
                 android:id="@+id/tvModeKiller"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Killer"
-                android:textSize="25sp"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:paddingLeft="10dp"
@@ -266,12 +271,13 @@
                 android:paddingBottom="3dp"/>
 
             <TextView
-                android:fontFamily="@font/rubik_light"
+                android:fontFamily="@font/press_start_2p"
+                android:textSize="20sp"
+                android:textColor="#20ba23"
                 android:id="@+id/tvModeEnCricket"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="English Cricket"
-                android:textSize="25sp"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:paddingLeft="10dp"

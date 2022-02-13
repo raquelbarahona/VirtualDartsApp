@@ -12,13 +12,15 @@ import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameActivity extends AppCompatActivity {
-    Button btnHome, btnStats;
+    Button btnStats;
+    ImageButton btnHome;
     String user_ID;
 
     RecyclerView recyclerView;
@@ -34,7 +36,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        btnHome = (Button) findViewById(R.id.btnHomeGame);
+        btnHome = (ImageButton) findViewById(R.id.btnHomeGame);
         btnStats = (Button) findViewById(R.id.btnStatsGame);
 
         // user_ID from other activity
@@ -122,7 +124,7 @@ public class GameActivity extends AppCompatActivity {
         // no existing game entries
         else {
             Log.d("TAG_BOOLEAN", "ENTRY DOES NOT EXIST");
-            Toast.makeText(getApplicationContext(), "No game entries yet", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "No game entries yet", Toast.LENGTH_SHORT).show();
         }
 
 

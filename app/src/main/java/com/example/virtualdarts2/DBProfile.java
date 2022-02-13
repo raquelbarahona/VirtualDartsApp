@@ -14,6 +14,7 @@ public class DBProfile extends DBAdapter {
     public static final String COL_FIRST_NAME = "First_Name";
     public static final String COL_LAST_NAME = "Last_Name";
     public static final String COL_AGE = "User_Age";
+    public static final String COL_PIC_PATH = "Pic_Path";
 
     // database should already exist
     public DBProfile(Context context) { super(context); }
@@ -56,6 +57,7 @@ public class DBProfile extends DBAdapter {
         contentValues.put(COL_FIRST_NAME, profileEntry.getFirst_name());
         contentValues.put(COL_LAST_NAME, profileEntry.getLast_name());
         contentValues.put(COL_AGE, profileEntry.getAge());
+        contentValues.put(COL_PIC_PATH, profileEntry.getPic_path());
 
         long result = myDB.insert(TABLE_NAME, null, contentValues);
 
@@ -76,7 +78,7 @@ public class DBProfile extends DBAdapter {
         }
 
         Cursor cursor = myDB.query(TABLE_NAME, new String[]{COL_USER_ID,
-                        COL_FIRST_NAME, COL_LAST_NAME, COL_AGE}, COL_USER_ID + "=?",
+                        COL_FIRST_NAME, COL_LAST_NAME, COL_AGE, COL_PIC_PATH}, COL_USER_ID + "=?",
                 new String[]{user_ID}, null, null,
                 null, null);
 
@@ -85,7 +87,8 @@ public class DBProfile extends DBAdapter {
         }
 
         ProfileEntry profileEntry = new ProfileEntry(cursor.getString(0),
-                cursor.getString(1), cursor.getString(2), cursor.getInt(3)); // gets values
+                cursor.getString(1), cursor.getString(2), cursor.getInt(3),
+                cursor.getString(4)); // gets values
 
         Log.d("_NAME_TAG_", profileEntry.getFirst_name());
         Log.d("_LAST_TAG_", profileEntry.getLast_name());
@@ -107,10 +110,36 @@ public class DBProfile extends DBAdapter {
         contentValues.put(COL_FIRST_NAME, profileEntry.getFirst_name());
         contentValues.put(COL_LAST_NAME, profileEntry.getLast_name());
         contentValues.put(COL_AGE, profileEntry.getAge());
+        contentValues.put(COL_PIC_PATH, profileEntry.getPic_path());
 
         // updating row (updates based on ID taken from profile entry)
         long result = myDB.update(TABLE_NAME, contentValues, COL_USER_ID + " = ?",
                 new String[] { String.valueOf(profileEntry.getUser_ID()) });
+
+        // close();
+
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
+
+    // updates profile picture
+    // might have to change content values
+    public Boolean updateProfilePic(String path, String user_ID) {
+        try {
+            open();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COL_PIC_PATH, path);
+
+        // updating row (updates based on ID taken from profile entry)
+        long result = myDB.update(TABLE_NAME, contentValues, COL_USER_ID + " = ?",
+                new String[] { String.valueOf(user_ID) });
 
         // close();
 

@@ -34,12 +34,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.051" />
 
-    <Button
-        android:backgroundTint="@color/lilac"
+    <ImageButton
+        android:layout_width="70dp"
+        android:layout_height="64dp"
+        android:background="@drawable/home"
+        android:backgroundTint="#a74b4b"
         android:textColor="@android:color/black"
         android:id="@+id/btnHomeGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +50,9 @@
         app:layout_constraintVertical_bias="0.877" />
 
     <Button
-        android:backgroundTint="@color/green"
+        android:drawableLeft="@drawable/stats"
+        android:drawableTint="@color/black"
+        android:backgroundTint="#336b9f"
         android:textColor="@android:color/black"
         android:id="@+id/btnStatsGame"
         android:layout_width="wrap_content"

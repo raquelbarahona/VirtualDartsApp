@@ -7,7 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public abstract class DBAdapter {
 
-    public static final int DATABASE_VERSION = 4; // update every time you add a new table??
+    // last version update: addition of profile picture to database
+    public static final int DATABASE_VERSION = 7; // update every time you add a new table??
     public static final String DATABASE_NAME = "VirtualDarts.db"; // name of the database
 
     // Creating Table
@@ -22,7 +23,8 @@ public abstract class DBAdapter {
             + DBProfile.COL_USER_ID + " TEXT PRIMARY KEY,"
             + DBProfile.COL_FIRST_NAME +  " TEXT,"
             + DBProfile.COL_LAST_NAME + " TEXT,"
-            + DBProfile.COL_AGE + " INT"
+            + DBProfile.COL_AGE + " INT,"
+            + DBProfile.COL_PIC_PATH + " TEXT"
             + ")";
 
     // not creating a primary key, will this make a difference?

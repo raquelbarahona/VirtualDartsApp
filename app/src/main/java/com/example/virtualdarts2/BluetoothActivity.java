@@ -29,6 +29,7 @@ import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +47,8 @@ import java.util.Set;
 import java.util.UUID;
 
 public class BluetoothActivity extends AppCompatActivity {
-    Button btnEnable, btnReceive, btnHome;
+    Button btnEnable, btnReceive;
+    ImageButton btnHome;
     TextView fileTV;
     EditText fileToReadET;
     String user_ID;
@@ -84,7 +86,7 @@ public class BluetoothActivity extends AppCompatActivity {
             user_ID = "user_ID";
 
         // initialize variables
-        btnHome = (Button) findViewById(R.id.btnHomeBluetooth);
+        btnHome = (ImageButton) findViewById(R.id.btnHomeBluetooth);
         btnEnable = (Button) findViewById(R.id.btnEnableBluetooth);
         btnReceive = (Button) findViewById(R.id.btnReceiveData);
         fileTV = (TextView) findViewById(R.id.enterFileNameTV);
@@ -110,6 +112,8 @@ public class BluetoothActivity extends AppCompatActivity {
                         + position, Toast.LENGTH_SHORT).show();*/
                 String chosenDevice = adapter.getItem(position);
                 String connectedToString = "Connected to: " + chosenDevice;
+                Toast.makeText(getApplicationContext(), connectedToString,
+                        Toast.LENGTH_SHORT).show();
                 //connectedDevice.setText(connectedToString);
                 for(BluetoothDevice device : pairedDevices) {
                     if(device.getName().equals(chosenDevice)) {
