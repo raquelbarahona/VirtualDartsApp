@@ -17,7 +17,8 @@ import java.io.File;
 public class HomeActivity extends AppCompatActivity {
 
     TextView welcome_user_ID;
-    Button btnProfile, btnStats, btnModes, btnLogOut, btnBluetooth;
+    Button btnProfile, btnStats, btnModes,
+            btnLogOut, btnBluetooth, btnLDB;
     ImageView profilePic;
     CardView card;
     DBProfile dbProfile;
@@ -56,6 +57,7 @@ public class HomeActivity extends AppCompatActivity {
         btnModes = (Button) findViewById(R.id.btn_game_modes);
         btnLogOut = (Button) findViewById(R.id.btnLogOut);
         btnBluetooth = (Button) findViewById(R.id.btnBluetoothHome);
+        btnLDB = (Button) findViewById(R.id.btnLDB);
 
         // image
         card = (CardView) findViewById(R.id.picCardHome);
@@ -104,7 +106,7 @@ public class HomeActivity extends AppCompatActivity {
         btnBluetooth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, BluetoothActivity.class);
+                Intent intent = new Intent(HomeActivity.this, UpdatesActivity.class);
                 intent.putExtra("current_user", user_ID);
                 startActivity(intent);
             }
@@ -115,6 +117,16 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, GameModesActivity.class);
+                intent.putExtra("current_user", user_ID);
+                startActivity(intent);
+            }
+        });
+
+        // takes you to leaderboard page
+        btnLDB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, LeaderboardActivity.class);
                 intent.putExtra("current_user", user_ID);
                 startActivity(intent);
             }

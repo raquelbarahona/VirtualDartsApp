@@ -14,9 +14,9 @@ import android.widget.TextView;
 
 public class GameModesActivity extends AppCompatActivity {
     ImageButton btnHome;
-    TextView players301, playersRW, playersCr, playersKill, playersEnC,
-            nums301, numsCr, numsKill, numsEnC,
-            text301, textRW, textCr, textKill, textEnC,
+    TextView players301, players501, playersCr, playersCU, playersEnC,
+            nums301, numsCr, numsCU, numsEnC,
+            text301, text501, textCr, textCU, textEnC,
             link;
     String user_ID;
 
@@ -29,21 +29,18 @@ public class GameModesActivity extends AppCompatActivity {
         btnHome = (ImageButton) findViewById(R.id.btnHomeModes);
 
         players301 = (TextView) findViewById(R.id.tvMode301Players);
-        playersRW = (TextView) findViewById(R.id.tvModeRWPlayers);
+        players501 = (TextView) findViewById(R.id.tvMode501Players);
         playersCr = (TextView) findViewById(R.id.tvModeCricketPlayers);
-        playersKill = (TextView) findViewById(R.id.tvModeKillerPlayers);
-        playersEnC = (TextView) findViewById(R.id.tvModeEnCricketPlayers);
+        playersCU = (TextView) findViewById(R.id.tvModeCUPlayers);
 
         nums301 = (TextView) findViewById(R.id.tvMode301Nums);
         numsCr = (TextView) findViewById(R.id.tvModeCricketNums);
-        numsKill = (TextView) findViewById(R.id.tvModeKillerNums);
-        numsEnC = (TextView) findViewById(R.id.tvModeEnCricketNums);
+        numsCU = (TextView) findViewById(R.id.tvModeCUNums);
 
         text301 = (TextView) findViewById(R.id.tvMode301Text);
-        textRW = (TextView) findViewById(R.id.tvModeRWText);
+        text501 = (TextView) findViewById(R.id.tvMode501Text);
         textCr = (TextView) findViewById(R.id.tvModeCricketText);
-        textKill = (TextView) findViewById(R.id.tvModeKillerText);
-        textEnC = (TextView) findViewById(R.id.tvModeEnCricketText);
+        textCU = (TextView) findViewById(R.id.tvModeCUText);
 
         // link
         link = (TextView) findViewById(R.id.tvLink);
@@ -66,11 +63,19 @@ public class GameModesActivity extends AppCompatActivity {
                 "‘busted’ (this is not what you want). That means the turn is over and next " +
                 "time it’s your turn you’ll start again from your previous score.";
 
-        String pRW = "Players: Two";
-        String rulesRW = "Rules: The object is to be the first player to hit every number on the board " +
-                "in sequence from 1-20. Hitting any part of the number – single, double or triple " +
-                "– counts, and numbers must be hit in order to advance to the next. Players " +
-                "alternate after three throws. The first player to hit a 20 is the winner.";
+        String p501 = "Each player will throw three darts per turn but you don’t have to throw " +
+                "all three darts. Like in the case where you have a small number left, it is" +
+                " likely to use just one dart to score.";
+        String rules501 = "Rules: To play 501 darts the rules are simple, both players or teams " +
+                "start with a score of 501 points. Each player then takes alternating turns at " +
+                "throwing their darts at the dartboard. The points scored are removed from the " +
+                "total, and then the opposing player/team does the same. The first to reach zero " +
+                "wins the game.\n" +
+                "\n" +
+                "However before you can start subtracting from your score, you must double-in, " +
+                "and to complete the game you must double-out (both will be explained below). This" +
+                " adds a bit more skill to the game as well as strategy when it comes to planning" +
+                " a finish.";
 
         String pC = "Players: Two players or two teams";
         String npC = "Numbers in Play: bullseye, 20,19,18,17,16,15";
@@ -100,53 +105,31 @@ public class GameModesActivity extends AppCompatActivity {
                 "they need to keep scoring on any innings that aren’t closed until they make up " +
                 "the points or their opponent wins the game.";
 
-        String pKill = "Players: Any, but three or more players is more fun";
-        String npKill = "Numbers in Play: The numbers used are determined by the players.  " +
-                "Each player throws a dart with their opposite hand to randomly choose their " +
-                "number. If you miss the board or hit a number that’s already claimed, " +
-                "you’ll need to throw again.";
-        String rulesKill = "Rules: Using three throws in a turn, each player first tries to hit " +
-                "the double of his or her own number – they’re then called a ‘killer’ and a K " +
-                "is placed next to their name on the scoreboard.\n" +
-                "\n" +
-                "Once a player is a killer, they aim for doubles of opponents' numbers. Each " +
-                "player has three lives and when a killer hits an opponent’s double the opponent " +
-                "loses a life. If a killer hits their own double by mistake, they lose one life. " +
-                "It’s possible to completely kill an opponent in one turn by throwing three " +
-                "doubles. The last player standing is the winner";
+        String pCU = "Players: Count Up darts can have 1 – 4 people for solo play or 2 – 8 for doubles.";
+        String npCU = "The objective of Count Up darts is to score the highest number of points " +
+                "possible with just 24 darts (8 rounds/throws). The player with the highest score " +
+                "at the end of the game will be declared the winner.";
+        String rulesCU = "Starting from 0, players hit numbers and add the points.\n" +
+                "Three throws are counted as one round, and players compete for the highest score" +
+                " in a total of 8 rounds.\n" +
+                "COUNT-UP is perfect for solo practice!\n" +
+                "The game is simple, just add the points from 24 throws.";
 
-        String pEnC = "Players: Two players or two teams";
-        String npEnC = "Numbers in Play: All numbers, but as each score must be higher than 40, " +
-                "the 20 is pretty popular.";
-        String rulesEnC = "Rules: Ten stripes are marked on the scoreboard as wickets. One " +
-                "player bats and the other bowls. The batter goes first.\n" +
-                "\n" +
-                "The bowler's job is to erase these wickets by hitting bullseyes. Each single " +
-                "bullseye erases one wicket, and each double bullseye wipes out two. The batter " +
-                "needs to score as many points (runs) as possible while their wickets remain. " +
-                "The tricky bit is that only scores over 40 count. E.g. scoring 37 = no runs. " +
-                "Scoring 45 = 5 runs etc.\n" +
-                "\n" +
-                "Scoring stops when all 10 wickets are taken out by the bowler. The batter " +
-                "records their final score, and then they swap roles. The winner is the player " +
-                "with the most points, or runs, from their round as batter.";
 
         players301.setText(p301);
-        playersRW.setText(pRW);
+        players501.setText(p501);
         playersCr.setText(pC);
-        playersKill.setText(pKill);
-        playersEnC.setText(pEnC);
+        playersCU.setText(pCU);
 
         nums301.setText(np301);
         numsCr.setText(npC);
-        numsKill.setText(npKill);
-        numsEnC.setText(npEnC);
+        numsCU.setText(npCU);
 
         text301.setText(rules301);
-        textRW.setText(rulesRW);
+        text501.setText(rules501);
         textCr.setText(rulesC);
-        textKill.setText(rulesKill);
-        textEnC.setText(rulesEnC);
+        textCU.setText(rulesCU);
+
 
         // user_ID from other activity
         user_ID = getIntent().getStringExtra("current_user");

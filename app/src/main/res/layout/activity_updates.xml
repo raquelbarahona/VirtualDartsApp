@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UpdatesActivity">
+
+    <Button
+        android:id="@+id/btnEnableBluetoothUP"
+        android:layout_width="107dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#42159a"
+        android:text="Enable"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/bluetoothDevices2"
+        app:layout_constraintEnd_toStartOf="@+id/btnRefreshUP"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bluetoothStatement2"
+        app:layout_constraintVertical_bias="0.01" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="58dp"
+        android:layout_height="51dp"
+        app:layout_constraintBottom_toTopOf="@+id/bluetoothDevices2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/btnRefreshUP"
+        app:layout_constraintTop_toBottomOf="@+id/bluetoothStatement2"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@android:drawable/stat_sys_data_bluetooth"
+        app:tint="#2196F3" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="58dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/bluetoothDevices2"
+        app:layout_constraintEnd_toStartOf="@+id/btnEnableBluetoothUP"
+        app:layout_constraintHorizontal_bias="0.941"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bluetoothStatement2"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@android:drawable/stat_sys_data_bluetooth"
+        app:tint="#2196F3" />
+
+    <TextView
+        android:id="@+id/bluetoothStatement2"
+        android:layout_width="379dp"
+        android:layout_height="73dp"
+        android:fontFamily="@font/rubik_light"
+        android:text="@string/bluetooth_statement_string"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/dbicon"
+        android:backgroundTint="#981616"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/page_title2"
+        android:layout_width="366dp"
+        android:layout_height="113dp"
+        android:fontFamily="@font/press_start_2p"
+        android:gravity="center"
+        android:hint="Page title"
+        android:minHeight="48dp"
+        android:text="@string/login_title"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textSize="42sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.051" />
+
+    <TextView
+        android:id="@+id/dataReceivedTV"
+        android:layout_width="359dp"
+        android:layout_height="67dp"
+        android:text="Data"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnHomeUP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.794"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnUpdateLDB"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageButton
+        android:id="@+id/btnHomeUP"
+        android:layout_width="70dp"
+        android:layout_height="64dp"
+        android:background="@drawable/home"
+        android:backgroundTint="#a74b4b"
+        android:text="Home"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectDeviceTV"
+        app:layout_constraintVertical_bias="0.726" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="355dp"
+        android:layout_height="86dp"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bluetoothDevices2"
+        app:layout_constraintVertical_bias="0.047">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPairedDevices"
+            android:layout_width="305dp"
+            android:layout_height="161dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:clipToPadding="false"
+            app:layout_constraintBottom_toTopOf="@+id/selectDeviceTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.529" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnRefreshUP"
+        android:layout_width="59dp"
+        android:layout_height="53dp"
+        android:layout_marginEnd="116dp"
+        android:background="@drawable/update_w"
+        android:backgroundTint="#42159a"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toTopOf="@+id/bluetoothDevices2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bluetoothStatement2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/selectDeviceTV"
+        android:layout_width="375dp"
+        android:layout_height="34dp"
+        android:fontFamily="@font/rubik_light"
+        android:gravity="center"
+        android:text="Select the device you wish to connect to"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.611"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.04" />
+
+    <TextView
+        android:id="@+id/bluetoothDevices2"
+        android:layout_width="349dp"
+        android:layout_height="33dp"
+        android:layout_marginBottom="488dp"
+        android:fontFamily="@font/press_start_2p"
+        android:paddingTop="10dp"
+        android:text="Paired devices:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnEnableBluetoothUP" />
+
+    <Button
+        android:id="@+id/btnUpdateStats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Update Stats"
+        app:layout_constraintBottom_toTopOf="@+id/dataReceivedTV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectDeviceTV"
+        app:layout_constraintVertical_bias="0.23" />
+
+    <Button
+        android:id="@+id/btnUpdateLDB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Update Leaderboard"
+        app:layout_constraintBottom_toTopOf="@+id/dataReceivedTV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnUpdateStats"
+        app:layout_constraintVertical_bias="0.344" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

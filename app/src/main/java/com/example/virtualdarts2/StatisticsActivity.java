@@ -159,10 +159,9 @@ public class StatisticsActivity extends AppCompatActivity {
     // determines mode
     public String findMode(String numberMode) {
         String mode301 = "301";
-        String modeRound = "Round the World";
+        String mode501 = "501";
         String modeCricket = "Cricket";
-        String modeKiller = "Killer";
-        String modeEnglish = "English Cricket";
+        String modeCU = "Count Up";
 
         String mode = "";
 
@@ -170,16 +169,13 @@ public class StatisticsActivity extends AppCompatActivity {
             mode = mode301;
         }
         else if(numberMode.equals("2")) {
-            mode = modeRound;
+            mode = mode501;
         }
         else if(numberMode.equals("3")) {
             mode = modeCricket;
         }
-        else if(numberMode.equals("4")) {
-            mode = modeKiller;
-        }
         else {
-            mode = modeEnglish;
+            mode = modeCU;
         }
 
         return mode;

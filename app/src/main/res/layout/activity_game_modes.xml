@@ -130,13 +130,13 @@
                 android:paddingBottom="3dp"/>
 
             <TextView
-                android:id="@+id/tvModeRW"
+                android:id="@+id/tvMode501"
                 android:fontFamily="@font/press_start_2p"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:textColor="#20ba23"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Round the world"
+                android:text="501"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:paddingLeft="10dp"
@@ -146,7 +146,7 @@
 
             <TextView
                 android:fontFamily="@font/rubik_light"
-                android:id="@+id/tvModeRWPlayers"
+                android:id="@+id/tvMode501Players"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Players"
@@ -158,10 +158,10 @@
 
             <TextView
                 android:fontFamily="@font/rubik_light"
-                android:id="@+id/tvModeRWText"
+                android:id="@+id/tvMode501Text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Round the world"
+                android:text="501"
                 android:textSize="18sp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
@@ -170,7 +170,7 @@
 
             <TextView
                 android:fontFamily="@font/press_start_2p"
-                android:textSize="22sp"
+                android:textSize="24sp"
                 android:textColor="#20ba23"
                 android:id="@+id/tvModeCricket"
                 android:layout_width="match_parent"
@@ -221,12 +221,12 @@
 
             <TextView
                 android:fontFamily="@font/press_start_2p"
-                android:textSize="22sp"
+                android:textSize="24sp"
                 android:textColor="#20ba23"
-                android:id="@+id/tvModeKiller"
+                android:id="@+id/tvModeCU"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Killer"
+                android:text="Count Up"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:paddingLeft="10dp"
@@ -236,7 +236,7 @@
 
             <TextView
                 android:fontFamily="@font/rubik_light"
-                android:id="@+id/tvModeKillerPlayers"
+                android:id="@+id/tvModeCUPlayers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Players"
@@ -248,7 +248,7 @@
 
             <TextView
                 android:fontFamily="@font/rubik_light"
-                android:id="@+id/tvModeKillerNums"
+                android:id="@+id/tvModeCUNums"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Numbers in play"
@@ -260,66 +260,16 @@
 
             <TextView
                 android:fontFamily="@font/rubik_light"
-                android:id="@+id/tvModeKillerText"
+                android:id="@+id/tvModeCUText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Killer"
+                android:text="Cout Up"
                 android:textSize="18sp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:paddingTop="8dp"
                 android:paddingBottom="3dp"/>
 
-            <TextView
-                android:fontFamily="@font/press_start_2p"
-                android:textSize="20sp"
-                android:textColor="#20ba23"
-                android:id="@+id/tvModeEnCricket"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="English Cricket"
-                android:textStyle="bold"
-                android:textAlignment="center"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="3dp"/>
-
-            <TextView
-                android:fontFamily="@font/rubik_light"
-                android:id="@+id/tvModeEnCricketPlayers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Players"
-                android:textSize="18sp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="3dp"/>
-
-            <TextView
-                android:fontFamily="@font/rubik_light"
-                android:id="@+id/tvModeEnCricketNums"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Numbers in play"
-                android:textSize="18sp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="3dp"/>
-
-            <TextView
-                android:fontFamily="@font/rubik_light"
-                android:id="@+id/tvModeEnCricketText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="English Cricket"
-                android:textSize="18sp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="3dp"/>
 
             <TextView
                 android:fontFamily="@font/rubik_light"

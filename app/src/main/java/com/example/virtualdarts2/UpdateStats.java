@@ -26,10 +26,10 @@ public class UpdateStats {
 
         // game modes
         int mode301 = 0;
-        int modeRound = 0;
+        int mode501 = 0;
         int modeCricket = 0;
-        int modeKiller = 0;
-        int modeEnglish = 0;
+        int modeCountUp = 0;
+
 
         // find total of each game player
         // counts how many of each mode there is and finds the most played
@@ -38,21 +38,18 @@ public class UpdateStats {
                 mode301 += 1;
             }
             else if(entry.getGame_mode().equals("2")) {
-                modeRound += 1;
+                mode501 += 1;
             }
             else if(entry.getGame_mode().equals("3")) {
                 modeCricket += 1;
             }
-            else if(entry.getGame_mode().equals("4")) {
-                modeKiller += 1;
-            }
             else {
-                modeEnglish += 1;
+                modeCountUp += 1;
             }
         }
 
-        // game modes 1, 2, 3, 4, 5
-        List<Integer> list = Arrays.asList(mode301, modeRound, modeCricket, modeKiller, modeEnglish);
+        // game modes 1, 2, 3, 4
+        List<Integer> list = Arrays.asList(mode301, mode501, modeCricket, modeCountUp);
         Integer mostPlayed = Collections.max(list);
 
         int i = 0;

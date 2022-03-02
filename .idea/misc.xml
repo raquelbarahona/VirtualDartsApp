@@ -14,16 +14,19 @@
         <entry key="..\:/Users/barah/AndroidStudioProjects/VirtualDarts3/app/src/main/res/drawable/ic_launcher_DB_background.xml" value="0.17835051546391753" />
         <entry key="..\:/Users/barah/AndroidStudioProjects/VirtualDarts3/app/src/main/res/drawable/ic_launcher_background.xml" value="0.24027777777777778" />
         <entry key="..\:/Users/barah/AndroidStudioProjects/VirtualDarts3/app/src/main/res/font/fonts.xml" value="0.25277777777777777" />
-        <entry key="..\:/Users/barah/AndroidStudioProjects/VirtualDarts3/app/src/main/res/layout/activity_bluetooth.xml" value="0.2" />
+        <entry key="..\:/Users/barah/AndroidStudioProjects/VirtualDarts3/app/src/main/res/layout/activity_bluetooth.xml" value="0.264" />
         <entry key="..\:/Users/barah/AndroidStudioProjects/VirtualDarts3/app/src/main/res/layout/activity_data.xml" value="0.22010869565217392" />
         <entry key="..\:/Users/barah/AndroidStudioProjects/VirtualDarts3/app/src/main/res/layout/activity_game.xml" value="0.2246376811594203" />
         <entry key="..\:/Users/barah/AndroidStudioProjects/VirtualDarts3/app/src/main/res/layout/activity_game_modes.xml" value="0.176" />
         <entry key="..\:/Users/barah/AndroidStudioProjects/VirtualDarts3/app/src/main/res/layout/activity_home.xml" value="0.2" />
+        <entry key="..\:/Users/barah/AndroidStudioProjects/VirtualDarts3/app/src/main/res/layout/activity_leaderboard.xml" value="0.152" />
         <entry key="..\:/Users/barah/AndroidStudioProjects/VirtualDarts3/app/src/main/res/layout/activity_login.xml" value="0.152" />
         <entry key="..\:/Users/barah/AndroidStudioProjects/VirtualDarts3/app/src/main/res/layout/activity_main.xml" value="0.22592592592592592" />
         <entry key="..\:/Users/barah/AndroidStudioProjects/VirtualDarts3/app/src/main/res/layout/activity_profile.xml" value="0.152" />
         <entry key="..\:/Users/barah/AndroidStudioProjects/VirtualDarts3/app/src/main/res/layout/activity_register.xml" value="0.22592592592592592" />
         <entry key="..\:/Users/barah/AndroidStudioProjects/VirtualDarts3/app/src/main/res/layout/activity_statistics.xml" value="0.2" />
+        <entry key="..\:/Users/barah/AndroidStudioProjects/VirtualDarts3/app/src/main/res/layout/activity_test.xml" value="0.15710382513661203" />
+        <entry key="..\:/Users/barah/AndroidStudioProjects/VirtualDarts3/app/src/main/res/layout/activity_updates.xml" value="0.4" />
         <entry key="..\:/Users/barah/AndroidStudioProjects/VirtualDarts3/app/src/main/res/layout/bluetooth_device.xml" value="0.2246376811594203" />
         <entry key="..\:/Users/barah/AndroidStudioProjects/VirtualDarts3/app/src/main/res/layout/game_entry.xml" value="0.2" />
         <entry key="..\:/Users/barah/AndroidStudioProjects/VirtualDarts3/app/src/main/res/layout/game_entry_single.xml" value="0.264" />

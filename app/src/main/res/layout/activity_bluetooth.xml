@@ -61,7 +61,7 @@
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.331"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bluetoothStatement"
         app:layout_constraintVertical_bias="0.0" />
@@ -70,31 +70,31 @@
         android:id="@+id/imageView4"
         android:layout_width="58dp"
         android:layout_height="51dp"
-        android:tint="#2196F3"
         app:layout_constraintBottom_toTopOf="@+id/bluetoothDevices"
         app:layout_constraintEnd_toStartOf="@+id/btnEnableBluetooth"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bluetoothStatement"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:drawable/stat_sys_data_bluetooth" />
+        app:srcCompat="@android:drawable/stat_sys_data_bluetooth"
+        app:tint="#2196F3" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="58dp"
         android:layout_height="51dp"
-        app:tint="#2196F3"
         app:layout_constraintBottom_toTopOf="@+id/bluetoothDevices"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/btnEnableBluetooth"
+        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintStart_toEndOf="@+id/btnRefresh"
         app:layout_constraintTop_toBottomOf="@+id/bluetoothStatement"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:drawable/stat_sys_data_bluetooth" />
+        app:srcCompat="@android:drawable/stat_sys_data_bluetooth"
+        app:tint="#2196F3" />
 
     <TextView
         android:id="@+id/bluetoothDevices"
-        android:layout_width="381dp"
+        android:layout_width="356dp"
         android:layout_height="31dp"
         android:fontFamily="@font/press_start_2p"
         android:text="Paired devices:"
@@ -137,31 +137,31 @@
         app:layout_constraintVertical_bias="0.194" />
 
     <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="397dp"
-            android:layout_height="133dp"
-            android:orientation="horizontal"
-            android:padding="10dp"
+        android:id="@+id/linearLayout"
+        android:layout_width="374dp"
+        android:layout_height="136dp"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.371"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bluetoothDevices"
+        app:layout_constraintVertical_bias="0.0">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvBluetooth"
+            android:layout_width="352dp"
+            android:layout_height="151dp"
+            android:layout_marginLeft="15dp"
+            android:clipToPadding="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.371"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bluetoothDevices"
-            app:layout_constraintVertical_bias="0.0">
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvBluetooth"
-                android:layout_width="352dp"
-                android:layout_height="151dp"
-                android:layout_marginLeft="15dp"
-                android:clipToPadding="false"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.529" />
-        </LinearLayout>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.529" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/enterFileNameTV"
@@ -191,6 +191,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enterFileNameTV"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnRefresh"
+        android:layout_width="59dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/update_w"
+        android:backgroundTint="#42159a"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toTopOf="@+id/bluetoothDevices"
+        app:layout_constraintStart_toEndOf="@+id/btnEnableBluetooth" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,6 +20,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VirtualDarts2">
         <activity
+            android:name=".UpdatesActivity"
+            android:exported="true" />
+        <activity
+            android:name=".TestActivity"
+            android:exported="true" />
+        <activity
+            android:name=".LeaderboardActivity"
+            android:exported="true" />
+        <activity
             android:name=".GameModesActivity"
             android:exported="true" />
         <activity

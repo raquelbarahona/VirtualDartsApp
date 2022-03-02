@@ -115,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:text="High score: "
+                android:text="Highest set score: "
                 android:textStyle="bold|italic"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -147,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:text="Low score: "
+                android:text="Lowest set score: "
 
                 android:textStyle="bold|italic"
                 app:layout_constraintBottom_toBottomOf="parent"
