@@ -5,6 +5,9 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -15,6 +18,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Scanner;
 import java.util.UUID;
+
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -28,13 +32,16 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
 import android.app.Activity;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -64,6 +71,8 @@ public class UpdatesActivity extends AppCompatActivity {
     DBGame dbGame;
     DBStats dbStats;
 
+    String chosenDevice;
+    Boolean dontCrash;
 
     public void sendMessage(String send_message) {
 
@@ -71,6 +80,16 @@ public class UpdatesActivity extends AppCompatActivity {
         UUID uuid = UUID.fromString("256bfb09-7e59-4453-99cf-f281e0fd0f5c");
 
         try {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
             socket = bluetoothDevice.createRfcommSocketToServiceRecord(uuid);
             if (!socket.isConnected()) {
                 socket.connect();
@@ -82,8 +101,91 @@ public class UpdatesActivity extends AppCompatActivity {
             btOutputStream.write(send_message.getBytes());
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
+            dontCrash = false; // will be used to check whether data can be received
             e.printStackTrace();
+
+        }
+    }
+
+    final class workerThread implements Runnable {
+        final Handler handler = new Handler();
+
+        private String message;
+
+        public workerThread(String msg) {
+            message = msg;
+        }
+
+        String insertionStatus = " "; // result of insertion
+
+        public void run() {
+                /*if(dontCrash) {
+
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Cannot connect. Please try again or select another device.",
+                            Toast.LENGTH_SHORT).show();
+                    dataReceivedTV.setText("N/A");
+                }*/
+            sendMessage(message); // send the message if pi is available
+            while (!Thread.currentThread().isInterrupted()) {
+
+                int bytesAvailable;
+                boolean workDone = false;
+
+                try {
+                    final InputStream inputStream;
+                    inputStream = socket.getInputStream();
+                    bytesAvailable = inputStream.available();
+                    if (bytesAvailable > 0) {
+
+                        byte[] packetBytes = new byte[bytesAvailable];
+                        Log.e("Bytes received from", "Raspberry Pi");
+                        byte[] readBuffer = new byte[1024];
+                        inputStream.read(packetBytes);
+
+                        for (int i = 0; i < bytesAvailable; i++) {
+                            byte b = packetBytes[i];
+                            if (b == delimiter) {
+                                byte[] encodedBytes = new byte[readBufferPosition];
+                                System.arraycopy(readBuffer, 0, encodedBytes, 0, encodedBytes.length);
+                                final String data = new String(encodedBytes, "US-ASCII");
+                                readBufferPosition = 0;
+
+                                handler.post(new Runnable() {
+                                    public void run() {
+                                        if (!data.equals("stop")) {
+                                            dataReceivedTV.setText(data);
+                                            insertionStatus = readAndUpdateDB(data);
+                                        } else {
+                                            //dataReceivedTV.setText("Data");
+                                        }
+
+                                    }
+                                });
+
+                                workDone = true;
+                                break;
+                            } else {
+                                readBuffer[readBufferPosition++] = b;
+                            }
+                        }
+
+                        if (workDone) {
+                            socket.close();
+                            break;
+                        }
+
+                    }
+                } catch (IOException e) {
+                    Toast.makeText(getApplicationContext(), "Cannot connect. Please try again or select another device.",
+                            Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+            // send insertion status to pi
+            //(new Thread(new workerThread(insertionStatus))).start();
+
         }
     }
 
@@ -92,13 +194,15 @@ public class UpdatesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_updates);
 
+        dontCrash = true;
+
         // user_ID from other activity
         user_ID = getIntent().getStringExtra("current_user");
-        if(user_ID == null)
+        if (user_ID == null)
             user_ID = "user_ID";
 
         // handler ?
-        final Handler handler = new Handler();
+        //final Handler handler = new Handler();
 
         // initialize variables
         btnHome = (ImageButton) findViewById(R.id.btnHomeUP);
@@ -106,20 +210,39 @@ public class UpdatesActivity extends AppCompatActivity {
         btnRefresh = (Button) findViewById(R.id.btnRefreshUP);
         btnUpdateStats = (Button) findViewById(R.id.btnUpdateStats);
         btnUpdateLDB = (Button) findViewById(R.id.btnUpdateLDB);
-        
-        dataReceivedTV= (TextView) findViewById(R.id.dataReceivedTV);
-        
+
+        dataReceivedTV = (TextView) findViewById(R.id.dataReceivedTV);
+
         dbGame = new DBGame(this);
         dbStats = new DBStats(this);
 
         // bluetooth
         // names of bluetooth devices
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         pairedDevices = bluetoothAdapter.getBondedDevices();
         deviceNames = new ArrayList();
-        for(BluetoothDevice device : pairedDevices) deviceNames.add(device.getName());
+        for (BluetoothDevice device : pairedDevices) deviceNames.add(device.getName());
+        Log.e("NUMBER OF DEVICES", Integer.toString(deviceNames.size()));
 
         // recycler view setup
+        // TODO recyclerview test
+        String list = "";
+        for (BluetoothDevice device : pairedDevices) {
+            list = list + device.getName() + " ";
+        }
+        Log.e("Devices", list);
+
+
         recyclerView = (RecyclerView) findViewById(R.id.rvPairedDevices);
         //recyclerView.setLayoutManager(new LinearLayoutManager(this));
         linearLayoutManager = new LinearLayoutManager(this);
@@ -127,18 +250,18 @@ public class UpdatesActivity extends AppCompatActivity {
         adapter.setClickListener(new BluetoothViewAdapter.ItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                String chosenDevice = adapter.getItem(position);
-                String connectedToString = "Connected to: " + chosenDevice;
+                chosenDevice = adapter.getItem(position);
+                String connectedToString = "Device selected: " + chosenDevice;
                 Toast.makeText(getApplicationContext(), connectedToString,
                         Toast.LENGTH_SHORT).show();
                 //connectedDevice.setText(connectedToString);
                 // chosen device should be "raspberrypi"
 
                 // FOR DEBUGGING
-                chosenDevice = "raspberrypi";
+                //chosenDevice = "raspberrypi";
 
-                for(BluetoothDevice device : pairedDevices) {
-                    if(device.getName().equals(chosenDevice)) {
+                for (BluetoothDevice device : pairedDevices) {
+                    if (device.getName().equals(chosenDevice)) {
                         bluetoothDevice = device;
                     }
                 }
@@ -165,84 +288,19 @@ public class UpdatesActivity extends AppCompatActivity {
 
 
 
-        final class workerThread implements Runnable {
 
-            private String message;
-            public workerThread(String msg) {
-                message = msg;
-            }
-
-            public void run() {
-
-                sendMessage(message);
-
-                while(!Thread.currentThread().isInterrupted()) {
-
-                    int bytesAvailable;
-                    boolean workDone = false;
-
-                    try {
-                        final InputStream inputStream;
-                        inputStream = socket.getInputStream();
-                        bytesAvailable = inputStream.available();
-                        if(bytesAvailable > 0) {
-
-                            byte[] packetBytes = new byte[bytesAvailable];
-                            Log.e("Bytes received from", "Raspberry Pi");
-                            byte[] readBuffer = new byte[1024];
-                            inputStream.read(packetBytes);
-
-                            for(int i=0; i < bytesAvailable; i++) {
-                                byte b = packetBytes[i];
-                                if(b == delimiter) {
-                                    byte[] encodedBytes = new byte[readBufferPosition];
-                                    System.arraycopy(readBuffer, 0, encodedBytes, 0, encodedBytes.length);
-                                    final String data = new String(encodedBytes, "US-ASCII");
-                                    readBufferPosition = 0;
-
-                                    handler.post(new Runnable() {
-                                        public void run() {
-                                            dataReceivedTV.setText(data);
-                                            String str = readAndUpdateDB(data);
-                                        }
-                                    });
-
-                                    workDone = true;
-                                    break;
-                                }
-                                else {
-                                    readBuffer[readBufferPosition++] = b;
-                                }
-                            }
-
-                            if (workDone) {
-                                socket.close();
-                                break;
-                            }
-
-                        }
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-
-                }
-
-            }
-        }
 
         // receive stats update
         btnUpdateStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*if(!bluetoothDevice.equals("raspberrypi")) {
-                    String wrongDevice = "Cannot communicate with chosen device. Try again";
-                    Toast.makeText(getApplicationContext(), wrongDevice, Toast.LENGTH_SHORT).show();
+                if(chosenDevice.equals("raspberrypi")) { // only connect with the raspberrypi
+                    (new Thread(new workerThread("get stats updates"))).start();
                 }
                 else {
-                    (new Thread(new workerThread("get stats updates"))).start();
-                }*/
-                (new Thread(new workerThread("get stats updates"))).start();
+                    Toast.makeText(getApplicationContext(), "Cannot communicate with selected device. Select another device",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -250,14 +308,13 @@ public class UpdatesActivity extends AppCompatActivity {
         btnUpdateLDB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*if(!bluetoothDevice.equals("raspberrypi")) {
-                    String wrongDevice = "Cannot communicate with chosen device. Try again";
-                    Toast.makeText(getApplicationContext(), wrongDevice, Toast.LENGTH_SHORT).show();
+                if(chosenDevice.equals("raspberrypi")) { // only connect with the raspberrypi
+                    (new Thread(new workerThread("get LDB updates"))).start();
                 }
                 else {
-                    (new Thread(new workerThread("get LDB updates"))).start();
-                }*/
-                (new Thread(new workerThread("get LDB updates"))).start();
+                    Toast.makeText(getApplicationContext(), "Cannot communicate with selected device. Select another device",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -290,6 +347,8 @@ public class UpdatesActivity extends AppCompatActivity {
         btnRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // TODO RECYCLERVIEW
+                recyclerView.getRecycledViewPool().clear();
                 Intent intent = new Intent(getApplicationContext(), UpdatesActivity.class);
                 intent.putExtra("current_user", user_ID);
                 startActivity(intent);
@@ -304,47 +363,74 @@ public class UpdatesActivity extends AppCompatActivity {
         Scanner myReader = new Scanner(dataReceived);
         int i = 0;
         int j = 0;
-        String toastMsg =":)";
-        String toastMsg2 = ":(";
-        while (myReader.hasNextLine()) {
-            i++;
-            String data = myReader.nextLine();
-            String statsOrLDB = String.valueOf(data.charAt(0)) + String.valueOf(data.charAt(1));
 
-            // insert game entry into the database
-            Boolean inserted;
-            if(statsOrLDB.equals("1,") || statsOrLDB.equals("0,")) {
-                inserted = dbGame.insertGameEntry(makeGameEntry(data));
-                toastMsg = "Game page updated!";
-                toastMsg2 = "Unable to update game page";
-            }
-            else {
-                // insert into leaderboard table
-                inserted = true;
-                toastMsg = "Leaderboard updated!";
-                toastMsg2 = "Unable to update leaderboard";
-            }
+        String statsOrLDBmsg = "";
 
-            if(inserted) {
-                j++;
-            }
-
-        }
-
-        if(i == j) { // proper number of lines was inserted
-            Toast.makeText(getApplicationContext(), toastMsg, Toast.LENGTH_SHORT).show();
+        if(dataReceived.equals("UPDATE ALREADY RECEIVED")) {
+            Toast.makeText(getApplicationContext(), "There are no new updates available", Toast.LENGTH_SHORT).show();
+            statsOrLDBmsg = "no action needed";
+            (new Thread(new workerThread(statsOrLDBmsg))).start();
+            String str = "Statistics already updated"; // TODO edit
+            dataReceivedTV.setText(str);
+            return statsOrLDBmsg;
         }
         else {
-            Toast.makeText(getApplicationContext(), toastMsg2, Toast.LENGTH_SHORT).show();
-        }
+            while (myReader.hasNextLine()) {
+                i++;
+                String data = myReader.nextLine();
+                String statsOrLDB = String.valueOf(data.charAt(0)) + String.valueOf(data.charAt(1));
 
-        myReader.close();
-        readData = "lol";
+                // insert game entry into the database
+                Boolean inserted;
+                if (statsOrLDB.equals("1,") || statsOrLDB.equals("0,")) {
+                    inserted = dbGame.insertGameEntry(makeGameEntry(data));
+                    statsOrLDBmsg = "stats";
+                } else {
+                    // insert into leaderboard table
+                    inserted = true; // TODO edit when leaderboard table is complete
+                    statsOrLDBmsg = "LDB";
+                }
 
-        if(readData.equals("")) {
-            return null;
+                if (inserted) {
+                    j++;
+                }
+
+            }
+
+            if (i == j) { // proper number of lines was inserted
+                if(statsOrLDBmsg.equals("stats")) {
+                    Toast.makeText(getApplicationContext(), "Statistics updated", Toast.LENGTH_SHORT).show();
+                    readData = "stats inserted";
+                }
+                else if(statsOrLDBmsg.equals("LDB")) {
+                    Toast.makeText(getApplicationContext(), "Leaderboard updated", Toast.LENGTH_SHORT).show();
+                    readData = "LDB inserted";
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "There are no new updates", Toast.LENGTH_SHORT).show();
+                    readData = "no action needed";
+                }
+
+            } else { // insertion failure
+                if(statsOrLDBmsg.equals("stats")) {
+                    Toast.makeText(getApplicationContext(), "Statistics failed to update", Toast.LENGTH_SHORT).show();
+                    readData = "stats NOT inserted";
+                }
+                else if(statsOrLDBmsg.equals("LDB")) {
+                    Toast.makeText(getApplicationContext(), "Leaderboard failed to update", Toast.LENGTH_SHORT).show();
+                    readData = "LDB NOT inserted";
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "There are no new updates", Toast.LENGTH_SHORT).show();
+                    readData = "no action needed";
+                }
+            }
+
+            myReader.close();
+
+            (new Thread(new workerThread(readData))).start();
+            return readData;
         }
-        else return readData;
     }
 
     public GameEntry makeGameEntry(String line) {

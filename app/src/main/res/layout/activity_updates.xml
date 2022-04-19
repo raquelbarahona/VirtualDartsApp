@@ -15,7 +15,7 @@
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/bluetoothDevices2"
         app:layout_constraintEnd_toStartOf="@+id/btnRefreshUP"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.813"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bluetoothStatement2"
         app:layout_constraintVertical_bias="0.01" />
@@ -96,11 +96,13 @@
         android:id="@+id/dataReceivedTV"
         android:layout_width="359dp"
         android:layout_height="67dp"
-        android:text="Data"
+        android:gravity="center"
+        android:text="[Data received]"
+        android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/btnHomeUP"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.794"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnUpdateLDB"
         app:layout_constraintVertical_bias="1.0" />
@@ -122,8 +124,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="355dp"
-        android:layout_height="86dp"
+        android:layout_width="350dp"
+        android:layout_height="125dp"
         android:orientation="horizontal"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -136,7 +138,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPairedDevices"
             android:layout_width="305dp"
-            android:layout_height="161dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
@@ -150,8 +152,8 @@
 
     <Button
         android:id="@+id/btnRefreshUP"
-        android:layout_width="59dp"
-        android:layout_height="53dp"
+        android:layout_width="47dp"
+        android:layout_height="44dp"
         android:layout_marginEnd="116dp"
         android:background="@drawable/update_w"
         android:backgroundTint="#42159a"
@@ -189,7 +191,6 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.568"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnEnableBluetoothUP" />
 

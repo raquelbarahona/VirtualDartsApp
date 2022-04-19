@@ -11,6 +11,8 @@ public class LeaderboardActivity extends AppCompatActivity {
     ImageButton btnHome;
     String user_ID;
 
+    DBLeaderboard dbLeaderboard;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,11 +20,15 @@ public class LeaderboardActivity extends AppCompatActivity {
 
 
         btnHome = (ImageButton) findViewById(R.id.btnHomeLDB);
+        dbLeaderboard = new DBLeaderboard(this);
 
         // user_ID from other activity
         user_ID = getIntent().getStringExtra("current_user");
         if(user_ID == null)
             user_ID = "user_ID";
+
+
+
 
 
         // takes you to home page

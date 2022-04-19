@@ -44,15 +44,11 @@
         android:fontFamily="@font/rubik_light"
         android:paddingBottom="10dp"
         android:text="Here are the top Virtual Darts players today"
+        app:layout_constraintBottom_toTopOf="@id/scrollView4"
+        app:layout_constraintTop_toBottomOf="@id/page_title"
         android:textAlignment="center"
         android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/page_title"
-        app:layout_constraintVertical_bias="0.0" />
+        android:textStyle="bold" />
 
 
     <ScrollView
@@ -68,7 +64,21 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/press_start_2p"
+                android:paddingLeft="10dp"
+                android:paddingTop="20dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:text="User"
+                android:textColor="#ffb250"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvFirst"
@@ -76,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/press_start_2p"
                 android:paddingLeft="10dp"
-               android:paddingTop="20dp"
+                android:paddingTop="20dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="10dp"
                 android:text="1.raquelB"
