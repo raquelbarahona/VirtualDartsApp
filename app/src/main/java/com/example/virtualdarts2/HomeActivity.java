@@ -87,7 +87,7 @@ public class HomeActivity extends AppCompatActivity {
         btnStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, StatisticsActivity.class);
+                Intent intent = new Intent(HomeActivity.this, StatsBActivity.class);
                 intent.putExtra("current_user", user_ID);
                 startActivity(intent);
             }
@@ -106,6 +106,7 @@ public class HomeActivity extends AppCompatActivity {
         btnBluetooth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Intent intent = new Intent(HomeActivity.this, UpdatesActivity.class);
                 Intent intent = new Intent(HomeActivity.this, UpdatesActivity.class);
                 intent.putExtra("current_user", user_ID);
                 startActivity(intent);

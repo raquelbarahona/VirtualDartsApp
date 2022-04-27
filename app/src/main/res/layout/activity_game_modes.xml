@@ -168,56 +168,6 @@
                 android:paddingTop="8dp"
                 android:paddingBottom="3dp"/>
 
-            <TextView
-                android:fontFamily="@font/press_start_2p"
-                android:textSize="24sp"
-                android:textColor="#20ba23"
-                android:id="@+id/tvModeCricket"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Cricket"
-                android:textStyle="bold"
-                android:textAlignment="center"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="3dp"/>
-
-            <TextView
-                android:fontFamily="@font/rubik_light"
-                android:id="@+id/tvModeCricketPlayers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Players"
-                android:textSize="18sp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="3dp"/>
-
-            <TextView
-                android:fontFamily="@font/rubik_light"
-                android:id="@+id/tvModeCricketNums"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Numbers in play"
-                android:textSize="18sp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="3dp"/>
-
-            <TextView
-                android:fontFamily="@font/rubik_light"
-                android:id="@+id/tvModeCricketText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Cricket"
-                android:textSize="18sp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="3dp"/>
 
             <TextView
                 android:fontFamily="@font/press_start_2p"

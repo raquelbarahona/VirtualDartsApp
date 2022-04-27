@@ -27,7 +27,6 @@ public class UpdateStats {
         // game modes
         int mode301 = 0;
         int mode501 = 0;
-        int modeCricket = 0;
         int modeCountUp = 0;
 
 
@@ -40,16 +39,13 @@ public class UpdateStats {
             else if(entry.getGame_mode().equals("2")) {
                 mode501 += 1;
             }
-            else if(entry.getGame_mode().equals("3")) {
-                modeCricket += 1;
-            }
             else {
                 modeCountUp += 1;
             }
         }
 
-        // game modes 1, 2, 3, 4
-        List<Integer> list = Arrays.asList(mode301, mode501, modeCricket, modeCountUp);
+        // game modes 1, 2, 3
+        List<Integer> list = Arrays.asList(mode301, mode501, modeCountUp);
         Integer mostPlayed = Collections.max(list);
 
         int i = 0;
@@ -94,44 +90,48 @@ public class UpdateStats {
         float newLowScore = 0;
         float newAvgScore = 0;
         float totalScore = 0;
+        int totalCUgames = 0;
         float tempScore; // if you set it to 0 if might change the low
 
         // high and low and avg score calculations
         for(GameEntry entry : this.gameEntryList) {
-            // check if match first
-            // NOT A MATCH
-            if(entry.getMatch() == 0) {
-                tempScore = entry.getPlayer_1_score();
-            }
-
-            // MATCH, USE USER_ID
-            else {
-                String user1 = entry.getUser_ID_1();
-                // USER 1
-                if(user1.equals(user_ID)) {
+            if(!entry.getGame_mode().equals("1") && !entry.getGame_mode().equals("2")) { // count up only
+                // check if match first
+                // NOT A MATCH
+                if (entry.getMatch() == 0) {
                     tempScore = entry.getPlayer_1_score();
                 }
 
-                // USER 2
+                // MATCH, USE USER_ID
                 else {
-                    tempScore = entry.getPlayer_2_score();
+                    String user1 = entry.getUser_ID_1();
+                    // USER 1
+                    if (user1.equals(user_ID)) {
+                        tempScore = entry.getPlayer_1_score();
+                    }
+
+                    // USER 2
+                    else {
+                        tempScore = entry.getPlayer_2_score();
+                    }
                 }
-            }
 
-            // this is not the first statistics entry, so you must compare the new data being
-            // calculated to the old one
-            if (tempScore > oldHighScore) {
-                oldHighScore = tempScore;
-            } else if (tempScore < oldLowScore) {
-                oldLowScore = tempScore;
-            }
+                // this is not the first statistics entry, so you must compare the new data being
+                // calculated to the old one
+                if (tempScore > oldHighScore) {
+                    oldHighScore = tempScore;
+                } else if (tempScore < oldLowScore) {
+                    oldLowScore = tempScore;
+                }
 
-            // add up scores to find average later
-            totalScore += tempScore;
+                // add up scores to find average later
+                totalScore += tempScore;
+                totalCUgames++;
+            }
         }
 
         // find new average score
-        newAvgScore = totalScore / newTotalGames; // new average score
+        newAvgScore = totalScore / totalCUgames; // new average score
         newAvgScore = BigDecimal.valueOf(newAvgScore)
                 .setScale(2, BigDecimal.ROUND_HALF_DOWN)
                 .floatValue();
@@ -153,59 +153,73 @@ public class UpdateStats {
         float newAvgScore = 0;
         float totalScore = 0;
         float tempScore;
+        float currentLow = 0;
+        float currentHigh = 0;
+        int totalCUgames = 0;
+
+        List<GameEntry> countUpList = new ArrayList<>();
+        for(GameEntry entry : this.gameEntryList) {
+            if(!entry.getGame_mode().equals("1") && !entry.getGame_mode().equals("2")) { // only for countUp
+                countUpList.add(entry);
+            }
+        }
 
         // first game entry in list
-        float currentLow;
-        float currentHigh;
-        GameEntry gameEntry = this.gameEntryList.get(0);
-        currentHigh = currentLow = gameEntry.getPlayer_1_score();
-        if(gameEntry.getMatch() == 1) { // if match, change data if it's second user
-            String user2 = gameEntry.getUser_ID_2();
-            // USER 2
-            if(user2.equals(user_ID)) {
-                currentHigh = currentLow = gameEntry.getPlayer_2_score(); // score that's being compared is user 2
-            }
-        }
-
-        // high and low and avg score calculations
-        for(GameEntry entry : this.gameEntryList) {
-            // check if match first
-            // NOT A MATCH
-            if(entry.getMatch() == 0) {
-                tempScore = entry.getPlayer_1_score(); // score that's being compared is user 1
-            }
-
-            // MATCH, USE USER_ID
-            else {
-                String user1 = entry.getUser_ID_1();
-                // USER 1
-                if(user1.equals(user_ID)) {
-                    tempScore = entry.getPlayer_1_score(); // score that's being compared is user 1
-                }
-
+        if(countUpList.size() > 0) {
+            GameEntry gameEntry = countUpList.get(0); // there is at least one game entry
+            currentHigh = currentLow = gameEntry.getPlayer_1_score();
+            if (gameEntry.getMatch() == 1) { // if match, change data if it's second user
+                String user2 = gameEntry.getUser_ID_2();
                 // USER 2
-                else {
-                    tempScore = entry.getPlayer_2_score(); // score that's being compared is user 2
+                if (user2.equals(user_ID)) {
+                    currentHigh = currentLow = gameEntry.getPlayer_2_score(); // score that's being compared is user 2
                 }
             }
 
-            if (tempScore > currentHigh) {
-                currentHigh = tempScore;
-            } else if (tempScore < currentLow) {
-                currentLow = tempScore;
+            // high and low and avg score calculations
+            int i = 0;
+            for (GameEntry entry : countUpList) {
+                if (!entry.getGame_mode().equals("1") && !entry.getGame_mode().equals("2")) { // only for countUp
+                    // check if match first
+                    // NOT A MATCH
+                    if (entry.getMatch() == 0) {
+                        tempScore = entry.getPlayer_1_score(); // score that's being compared is user 1
+                    }
+
+                    // MATCH, USE USER_ID
+                    else {
+                        String user1 = entry.getUser_ID_1();
+                        // USER 1
+                        if (user1.equals(user_ID)) {
+                            tempScore = entry.getPlayer_1_score(); // score that's being compared is user 1
+                        }
+
+                        // USER 2
+                        else {
+                            tempScore = entry.getPlayer_2_score(); // score that's being compared is user 2
+                        }
+                    }
+
+                    if (tempScore > currentHigh) {
+                        currentHigh = tempScore;
+                    } else if (tempScore < currentLow) {
+                        currentLow = tempScore;
+                    }
+                    // add up scores to find average later
+                    totalScore += tempScore;
+                    totalCUgames++;
+                }
             }
-            // add up scores to find average later
-            totalScore += tempScore;
+
+            // find new average score
+            newAvgScore = totalScore / totalCUgames; // new average score
+            newAvgScore = BigDecimal.valueOf(newAvgScore)
+                    .setScale(2, BigDecimal.ROUND_HALF_DOWN)
+                    .floatValue();
         }
 
-        // find new average score
-        newAvgScore = totalScore / newTotalGames; // new average score
-        newAvgScore = BigDecimal.valueOf(newAvgScore)
-                .setScale(2, BigDecimal.ROUND_HALF_DOWN)
-                .floatValue();
-
-
-        List<Float> list = new ArrayList<Float>();
+        List<Float> list = new ArrayList<>();
+        // this might be {0,0,0} if there are no count up entries
         list.add(currentHigh);
         list.add(currentLow);
         list.add(newAvgScore);

@@ -142,4 +142,29 @@ public class DBStats extends DBAdapter {
             return true;
     }
 
+    public ArrayList<StatsEntry> getAllStatsEntries() {
+        ArrayList<StatsEntry> allStatsList = new ArrayList<>();
+        try {
+            open();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String query = "SELECT  * FROM " + TABLE_NAME;
+        Cursor cursor = myDB.rawQuery(query, new String[]{});
+        if (cursor != null) {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                StatsEntry statsEntry = new StatsEntry(cursor.getString(0), cursor.getString(1),
+                        cursor.getFloat(2), cursor.getFloat(3), cursor.getFloat(4),
+                        cursor.getInt(5), cursor.getInt(6), cursor.getInt(7),
+                        cursor.getInt(8), cursor.getInt(9));
+                allStatsList.add(statsEntry);
+                cursor.moveToNext();
+            }
+        }
+
+        return allStatsList;
+    }
+
 }

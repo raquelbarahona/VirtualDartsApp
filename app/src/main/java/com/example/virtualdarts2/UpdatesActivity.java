@@ -71,7 +71,7 @@ public class UpdatesActivity extends AppCompatActivity {
     DBGame dbGame;
     DBStats dbStats;
 
-    String chosenDevice;
+    String chosenDevice = "nothing"; // ?
     Boolean dontCrash;
 
     public void sendMessage(String send_message) {
@@ -209,7 +209,8 @@ public class UpdatesActivity extends AppCompatActivity {
         btnEnable = (Button) findViewById(R.id.btnEnableBluetoothUP);
         btnRefresh = (Button) findViewById(R.id.btnRefreshUP);
         btnUpdateStats = (Button) findViewById(R.id.btnUpdateStats);
-        btnUpdateLDB = (Button) findViewById(R.id.btnUpdateLDB);
+        //btnUpdateLDB = (Button) findViewById(R.id.btnUpdateLDB);
+        //btnUpdateLDB.setVisibility(View.INVISIBLE);
 
         dataReceivedTV = (TextView) findViewById(R.id.dataReceivedTV);
 
@@ -261,6 +262,16 @@ public class UpdatesActivity extends AppCompatActivity {
                 //chosenDevice = "raspberrypi";
 
                 for (BluetoothDevice device : pairedDevices) {
+                    if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        return;
+                    }
                     if (device.getName().equals(chosenDevice)) {
                         bluetoothDevice = device;
                     }
@@ -271,7 +282,7 @@ public class UpdatesActivity extends AppCompatActivity {
         // finalize recycler view
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
-        
+
         // result launcher, am not sure what should go inside if anything
         // whatever this is
         ActivityResultLauncher<Intent> UpdatesActivityResultLauncher = registerForActivityResult(
@@ -294,7 +305,11 @@ public class UpdatesActivity extends AppCompatActivity {
         btnUpdateStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(chosenDevice.equals("raspberrypi")) { // only connect with the raspberrypi
+                if(chosenDevice.equals("nothing")) {
+                    Toast.makeText(getApplicationContext(), "Select a device before connecting",
+                            Toast.LENGTH_SHORT).show();
+                }
+                else if(chosenDevice.equals("raspberrypi")) { // only connect with the raspberrypi
                     (new Thread(new workerThread("get stats updates"))).start();
                 }
                 else {
@@ -305,7 +320,7 @@ public class UpdatesActivity extends AppCompatActivity {
         });
 
         // receive stats update
-        btnUpdateLDB.setOnClickListener(new View.OnClickListener() {
+        /*btnUpdateLDB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(chosenDevice.equals("raspberrypi")) { // only connect with the raspberrypi
@@ -316,7 +331,7 @@ public class UpdatesActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });**/
 
         // BUTTONS
         // takes you to home page

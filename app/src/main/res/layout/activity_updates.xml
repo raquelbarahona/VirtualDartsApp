@@ -15,7 +15,7 @@
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/bluetoothDevices2"
         app:layout_constraintEnd_toStartOf="@+id/btnRefreshUP"
-        app:layout_constraintHorizontal_bias="0.813"
+        app:layout_constraintHorizontal_bias="0.894"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bluetoothStatement2"
         app:layout_constraintVertical_bias="0.01" />
@@ -94,18 +94,17 @@
 
     <TextView
         android:id="@+id/dataReceivedTV"
-        android:layout_width="359dp"
-        android:layout_height="67dp"
+        android:layout_width="340dp"
+        android:layout_height="77dp"
+        android:layout_marginBottom="36dp"
         android:gravity="center"
-        android:text="[Data received]"
+        android:text=""
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/btnHomeUP"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnUpdateLDB"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/btnHomeUP"
@@ -120,7 +119,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/selectDeviceTV"
-        app:layout_constraintVertical_bias="0.726" />
+        app:layout_constraintVertical_bias="0.745" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -152,9 +151,9 @@
 
     <Button
         android:id="@+id/btnRefreshUP"
-        android:layout_width="47dp"
-        android:layout_height="44dp"
-        android:layout_marginEnd="116dp"
+        android:layout_width="55dp"
+        android:layout_height="51dp"
+        android:layout_marginEnd="120dp"
         android:background="@drawable/update_w"
         android:backgroundTint="#42159a"
         app:backgroundTint="@null"
@@ -191,6 +190,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.84"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnEnableBluetoothUP" />
 
@@ -202,22 +202,10 @@
         android:text="Update Stats"
         app:layout_constraintBottom_toTopOf="@+id/dataReceivedTV"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.528"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/selectDeviceTV"
-        app:layout_constraintVertical_bias="0.23" />
+        app:layout_constraintVertical_bias="0.169" />
 
-    <Button
-        android:id="@+id/btnUpdateLDB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Update Leaderboard"
-        app:layout_constraintBottom_toTopOf="@+id/dataReceivedTV"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnUpdateStats"
-        app:layout_constraintVertical_bias="0.344" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

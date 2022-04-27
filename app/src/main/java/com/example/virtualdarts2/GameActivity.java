@@ -142,7 +142,7 @@ public class GameActivity extends AppCompatActivity {
         btnStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), StatisticsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), StatsBActivity.class);
                 intent.putExtra("current_user", user_ID);
                 startActivity(intent);
             }
@@ -153,7 +153,6 @@ public class GameActivity extends AppCompatActivity {
     public String findMode(GameEntry entry) {
         String mode301 = "301";
         String mode501 = "501";
-        String modeCricket = "Cricket";
         String modeCU = "Count Up";
 
         String mode = "";
@@ -163,9 +162,6 @@ public class GameActivity extends AppCompatActivity {
         }
         else if(entry.getGame_mode().equals("2")) {
             mode = mode501;
-        }
-        else if(entry.getGame_mode().equals("3")) {
-            mode = modeCricket;
         }
         else {
             mode = modeCU;

@@ -14,9 +14,9 @@ import android.widget.TextView;
 
 public class GameModesActivity extends AppCompatActivity {
     ImageButton btnHome;
-    TextView players301, players501, playersCr, playersCU, playersEnC,
-            nums301, numsCr, numsCU, numsEnC,
-            text301, text501, textCr, textCU, textEnC,
+    TextView players301, players501, playersCU,
+            nums301, numsCU,
+            text301, text501, textCU,
             link;
     String user_ID;
 
@@ -30,16 +30,13 @@ public class GameModesActivity extends AppCompatActivity {
 
         players301 = (TextView) findViewById(R.id.tvMode301Players);
         players501 = (TextView) findViewById(R.id.tvMode501Players);
-        playersCr = (TextView) findViewById(R.id.tvModeCricketPlayers);
         playersCU = (TextView) findViewById(R.id.tvModeCUPlayers);
 
         nums301 = (TextView) findViewById(R.id.tvMode301Nums);
-        numsCr = (TextView) findViewById(R.id.tvModeCricketNums);
         numsCU = (TextView) findViewById(R.id.tvModeCUNums);
 
         text301 = (TextView) findViewById(R.id.tvMode301Text);
         text501 = (TextView) findViewById(R.id.tvMode501Text);
-        textCr = (TextView) findViewById(R.id.tvModeCricketText);
         textCU = (TextView) findViewById(R.id.tvModeCUText);
 
         // link
@@ -77,34 +74,6 @@ public class GameModesActivity extends AppCompatActivity {
                 " adds a bit more skill to the game as well as strategy when it comes to planning" +
                 " a finish.";
 
-        String pC = "Players: Two players or two teams";
-        String npC = "Numbers in Play: bullseye, 20,19,18,17,16,15";
-        String rulesC = "Rules: The aim is to 'close' these numbers on the board, and get the " +
-                "highest point score. The player/team to do so first, wins.\n" +
-                "\n" +
-                "\n" +
-                "Each player/team takes turns throwing three darts in a row (an 'inning'). " +
-                "To close an inning, the player/team needs to score three of a number – with " +
-                "three singles, a single and a double, or a triple.\n" +
-                "\n" +
-                "\n" +
-                "Once a player/team scores three of a number, they ‘own’ it. Once a player/team " +
-                "closes an inning, he/they may score points on that number until the opponent also " +
-                "closes that inning. All numerical scores are added together.\n" +
-                "\n" +
-                "Once both players/teams have scored three of a number, it’s 'closed', and it can’t" +
-                " be scored on by either player/team.\n" +
-                "\n" +
-                "To close the bullseye, the outer bull counts as a single, and the inner bull " +
-                "counts as a double. Numbers can be 'owned' or 'closed' in any order. No need to " +
-                "call your shot.\n" +
-                "\n" +
-                "The player/team that closes all the innings first and has the most points, wins. " +
-                "If both sides are tied on points, the first player/team to close all innings is " +
-                "the winner. If a player/team closes all innings first, but is behind on points, " +
-                "they need to keep scoring on any innings that aren’t closed until they make up " +
-                "the points or their opponent wins the game.";
-
         String pCU = "Players: Count Up darts can have 1 – 4 people for solo play or 2 – 8 for doubles.";
         String npCU = "The objective of Count Up darts is to score the highest number of points " +
                 "possible with just 24 darts (8 rounds/throws). The player with the highest score " +
@@ -118,16 +87,13 @@ public class GameModesActivity extends AppCompatActivity {
 
         players301.setText(p301);
         players501.setText(p501);
-        playersCr.setText(pC);
         playersCU.setText(pCU);
 
         nums301.setText(np301);
-        numsCr.setText(npC);
         numsCU.setText(npCU);
 
         text301.setText(rules301);
         text501.setText(rules501);
-        textCr.setText(rulesC);
         textCU.setText(rulesCU);
 
 
